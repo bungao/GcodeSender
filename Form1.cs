@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -16,6 +17,8 @@ namespace GrblOutput {
 		List<string> lines = new List<string>();
 		int CurrentRow = 0;
 		bool transfer = false;
+        bool settingsload = false;
+        private Thread settingsthread = null;
 
 		public Form1() {
 			InitializeComponent();
@@ -79,7 +82,8 @@ namespace GrblOutput {
 
 		private void buttonStop_Click(object sender, EventArgs e) {
 			if (serialPort1.IsOpen) {
-				serialPort1.Close();
+				serialPort1.Close();}
+
 				comboBox1.Enabled = true;
 				ReloadBtn.Enabled = true;
 				StartBtn.Enabled = true;
@@ -89,7 +93,7 @@ namespace GrblOutput {
 				disableControlsForPrinting();
 				BrowseBtn.Enabled = true;
 				stopPrintBtn.Enabled = false;
-			}
+			
 
 		}
 
@@ -105,6 +109,7 @@ namespace GrblOutput {
 				buff = textBox3.Text.ToCharArray();
 				serialPort1.Write(buff, 0, buff.Count());
 				textBox3.Text = "";
+                e.Handled = true;
 			}
 		}
 
@@ -131,8 +136,14 @@ namespace GrblOutput {
 			enableControlsForPrinting();
 		}
 
-		private void serialPort1_DataReceived
-		  (object sender, System.IO.Ports.SerialDataReceivedEventArgs e) {
+		private void serialPort1_DataReceived(object sender, System.IO.Ports.SerialDataReceivedEventArgs e) 
+        {
+            if (settingsload == true)
+            {
+               SettingsLoad();
+               settingsload = false;
+               return;
+            }
 			RxString += serialPort1.ReadExisting();
 			if ((RxString.EndsWith("\r\n") && radioButton2.Checked) || (RxString.EndsWith("\n\r") && radioButton1.Checked)) {				// NORMAL: \n\r
 				this.Invoke(new EventHandler(DisplayText));
@@ -270,5 +281,117 @@ namespace GrblOutput {
 				e.DrawFocusRectangle();
 			}
 		}
+
+        private void settingsBox1_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == System.Windows.Forms.MouseButtons.Right)
+            {
+                
+            }
+
+
+        }
+
+        private void AddSettingButton1_Click(object sender, EventArgs e)
+        {
+            settingsBox1.Items.Add(AddSettingTextBox.Text);
+            AddSettingTextBox.Text = "";
+        }
+
+        private void ApplySettingsButton_Click(object sender, EventArgs e)
+        {
+            foreach (ListViewItem i in settingsBox1.Items)
+            {
+                SendString(i.Text);
+            }
+            
+        }
+
+        private void AddSettingTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)13)
+            {
+                
+                AddSettingTextBox.Text = "";
+                e.Handled = true;
+            }
+
+        }
+
+        private void SendString(string s)
+        {
+            if (!serialPort1.IsOpen) return;
+            s += "\r\n";
+            char[] buff = new char[s.Length];
+            buff = s.ToCharArray();
+            serialPort1.Write(buff, 0, buff.Count());
+        }
+
+        private void LoadDeviceSettingsButton_Click(object sender, EventArgs e)
+        {
+            settingsBox1.Items.Clear();
+            settingsload = true;
+            SendString("$$");
+        }
+
+        
+
+        private void SettingsLoad()
+        {
+            Thread.Sleep(1000);
+            RxString += serialPort1.ReadExisting();
+            string[] settings = RxString.Replace("\n\r", "\r\n").Replace("\r\n", "\n").Trim('\n').Split('\n');
+
+            foreach (string setting in settings)
+            {
+                if (setting.StartsWith("$"))
+                {
+                    AddSetting(setting);
+                }
+                else
+                {
+                    settingsload = false;
+                }
+            }
+            RxString = "";
+
+        }
+        delegate void AddSettingCallBack(string s);
+
+        private void AddSetting(string s)
+        {
+            if (InvokeRequired == true)
+            {
+                AddSettingCallBack d = new AddSettingCallBack(AddSetting);
+                this.Invoke(d, new object[] { s });
+            }
+            else
+            {
+                ListViewItem item = new ListViewItem(s.Split('('));
+                
+                settingsBox1.Items.Add(item);
+            }
+        }
+
+        private void settingsBox1_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            foreach (ListViewItem i in settingsBox1.SelectedItems)
+            {
+                SendString(i.Text);
+                DisplayText("Applied Setting: " + i.Text + " " + i.SubItems[1].Text);
+            }
+        }
+
+        private void DisplayText(string s)
+        {
+            serialResponseList.Items.Add(s);
+            serialResponseList.TopIndex = serialResponseList.Items.Count - 1;
+        }
+
+
+
+
+
 	}
+
 }
