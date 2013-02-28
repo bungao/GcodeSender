@@ -57,10 +57,31 @@
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.LoadDeviceSettingsButton = new System.Windows.Forms.Button();
             this.ApplySettingsButton = new System.Windows.Forms.Button();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.ToBinButton = new System.Windows.Forms.Button();
+            this.IntegerTextBox = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.ToIntButton = new System.Windows.Forms.Button();
+            this.BinaryTextBox = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.YPosButton = new System.Windows.Forms.Button();
+            this.XNegbutton = new System.Windows.Forms.Button();
+            this.XPosButton = new System.Windows.Forms.Button();
+            this.YNegButton = new System.Windows.Forms.Button();
+            this.ZPosButton = new System.Windows.Forms.Button();
+            this.ZNegButton = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.JogSizetextBox = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.speedOverrideNumber)).BeginInit();
             this.groupBox3.SuspendLayout();
+            this.groupBox4.SuspendLayout();
+            this.groupBox5.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // serialPort1
@@ -176,7 +197,7 @@
             this.serialResponseList.Location = new System.Drawing.Point(12, 132);
             this.serialResponseList.Name = "serialResponseList";
             this.serialResponseList.SelectionMode = System.Windows.Forms.SelectionMode.None;
-            this.serialResponseList.Size = new System.Drawing.Size(584, 329);
+            this.serialResponseList.Size = new System.Drawing.Size(868, 329);
             this.serialResponseList.TabIndex = 15;
             this.serialResponseList.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.serialResponseList_DrawItem);
             // 
@@ -322,7 +343,7 @@
             this.settingsBox1.LabelWrap = false;
             this.settingsBox1.Location = new System.Drawing.Point(6, 61);
             this.settingsBox1.Name = "settingsBox1";
-            this.settingsBox1.Size = new System.Drawing.Size(306, 355);
+            this.settingsBox1.Size = new System.Drawing.Size(306, 251);
             this.settingsBox1.TabIndex = 19;
             this.settingsBox1.UseCompatibleStateImageBehavior = false;
             this.settingsBox1.View = System.Windows.Forms.View.Details;
@@ -372,9 +393,9 @@
             this.groupBox3.Controls.Add(this.AddSettingTextBox);
             this.groupBox3.Controls.Add(this.AddSettingButton1);
             this.groupBox3.Controls.Add(this.settingsBox1);
-            this.groupBox3.Location = new System.Drawing.Point(614, 12);
+            this.groupBox3.Location = new System.Drawing.Point(880, 12);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(318, 442);
+            this.groupBox3.Size = new System.Drawing.Size(318, 338);
             this.groupBox3.TabIndex = 22;
             this.groupBox3.TabStop = false;
             // 
@@ -391,7 +412,7 @@
             // ApplySettingsButton
             // 
             this.ApplySettingsButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.ApplySettingsButton.Location = new System.Drawing.Point(6, 415);
+            this.ApplySettingsButton.Location = new System.Drawing.Point(6, 311);
             this.ApplySettingsButton.Name = "ApplySettingsButton";
             this.ApplySettingsButton.Size = new System.Drawing.Size(62, 21);
             this.ApplySettingsButton.TabIndex = 22;
@@ -399,11 +420,221 @@
             this.ApplySettingsButton.UseVisualStyleBackColor = true;
             this.ApplySettingsButton.Click += new System.EventHandler(this.ApplySettingsButton_Click);
             // 
+            // groupBox4
+            // 
+            this.groupBox4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox4.Controls.Add(this.ToBinButton);
+            this.groupBox4.Controls.Add(this.IntegerTextBox);
+            this.groupBox4.Controls.Add(this.label4);
+            this.groupBox4.Controls.Add(this.ToIntButton);
+            this.groupBox4.Controls.Add(this.BinaryTextBox);
+            this.groupBox4.Controls.Add(this.label3);
+            this.groupBox4.Location = new System.Drawing.Point(880, 356);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(318, 98);
+            this.groupBox4.TabIndex = 23;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Setting Calculator";
+            // 
+            // ToBinButton
+            // 
+            this.ToBinButton.Location = new System.Drawing.Point(154, 36);
+            this.ToBinButton.Name = "ToBinButton";
+            this.ToBinButton.Size = new System.Drawing.Size(75, 23);
+            this.ToBinButton.TabIndex = 5;
+            this.ToBinButton.Text = "To Binary";
+            this.ToBinButton.UseVisualStyleBackColor = true;
+            // 
+            // IntegerTextBox
+            // 
+            this.IntegerTextBox.Location = new System.Drawing.Point(48, 38);
+            this.IntegerTextBox.MaxLength = 3;
+            this.IntegerTextBox.Name = "IntegerTextBox";
+            this.IntegerTextBox.Size = new System.Drawing.Size(100, 20);
+            this.IntegerTextBox.TabIndex = 4;
+            this.IntegerTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.IntegerTextBox_KeyPress);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(7, 41);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(40, 13);
+            this.label4.TabIndex = 3;
+            this.label4.Text = "Integer";
+            // 
+            // ToIntButton
+            // 
+            this.ToIntButton.Location = new System.Drawing.Point(154, 10);
+            this.ToIntButton.Name = "ToIntButton";
+            this.ToIntButton.Size = new System.Drawing.Size(75, 23);
+            this.ToIntButton.TabIndex = 2;
+            this.ToIntButton.Text = "To Integer";
+            this.ToIntButton.UseVisualStyleBackColor = true;
+            this.ToIntButton.Click += new System.EventHandler(this.ToIntButton_Click);
+            // 
+            // BinaryTextBox
+            // 
+            this.BinaryTextBox.Location = new System.Drawing.Point(48, 13);
+            this.BinaryTextBox.MaxLength = 8;
+            this.BinaryTextBox.Name = "BinaryTextBox";
+            this.BinaryTextBox.Size = new System.Drawing.Size(100, 20);
+            this.BinaryTextBox.TabIndex = 1;
+            this.toolTip1.SetToolTip(this.BinaryTextBox, "Enter Binary Number");
+            this.BinaryTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.BinaryTextBox_KeyPress);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(6, 16);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(36, 13);
+            this.label3.TabIndex = 0;
+            this.label3.Text = "Binary";
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox5.Controls.Add(this.tableLayoutPanel1);
+            this.groupBox5.Location = new System.Drawing.Point(602, 12);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(278, 114);
+            this.groupBox5.TabIndex = 24;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "Jogging";
+            // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel1.ColumnCount = 5;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel1.Controls.Add(this.YPosButton, 2, 0);
+            this.tableLayoutPanel1.Controls.Add(this.XNegbutton, 1, 1);
+            this.tableLayoutPanel1.Controls.Add(this.XPosButton, 3, 1);
+            this.tableLayoutPanel1.Controls.Add(this.YNegButton, 2, 2);
+            this.tableLayoutPanel1.Controls.Add(this.ZPosButton, 4, 0);
+            this.tableLayoutPanel1.Controls.Add(this.ZNegButton, 4, 2);
+            this.tableLayoutPanel1.Controls.Add(this.JogSizetextBox, 1, 2);
+            this.tableLayoutPanel1.Controls.Add(this.label5, 0, 2);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(6, 19);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 3;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(266, 89);
+            this.tableLayoutPanel1.TabIndex = 0;
+            // 
+            // YPosButton
+            // 
+            this.YPosButton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.YPosButton.Location = new System.Drawing.Point(109, 3);
+            this.YPosButton.Name = "YPosButton";
+            this.YPosButton.Size = new System.Drawing.Size(47, 23);
+            this.YPosButton.TabIndex = 0;
+            this.YPosButton.Text = "Y+";
+            this.YPosButton.UseVisualStyleBackColor = true;
+            // 
+            // XNegbutton
+            // 
+            this.XNegbutton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.XNegbutton.Location = new System.Drawing.Point(56, 32);
+            this.XNegbutton.Name = "XNegbutton";
+            this.XNegbutton.Size = new System.Drawing.Size(47, 23);
+            this.XNegbutton.TabIndex = 1;
+            this.XNegbutton.Text = "X-";
+            this.XNegbutton.UseVisualStyleBackColor = true;
+            // 
+            // XPosButton
+            // 
+            this.XPosButton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.XPosButton.Location = new System.Drawing.Point(162, 32);
+            this.XPosButton.Name = "XPosButton";
+            this.XPosButton.Size = new System.Drawing.Size(47, 23);
+            this.XPosButton.TabIndex = 2;
+            this.XPosButton.Text = "X+";
+            this.XPosButton.UseVisualStyleBackColor = true;
+            // 
+            // YNegButton
+            // 
+            this.YNegButton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.YNegButton.Location = new System.Drawing.Point(109, 61);
+            this.YNegButton.Name = "YNegButton";
+            this.YNegButton.Size = new System.Drawing.Size(47, 25);
+            this.YNegButton.TabIndex = 3;
+            this.YNegButton.Text = "Y-";
+            this.YNegButton.UseVisualStyleBackColor = true;
+            // 
+            // ZPosButton
+            // 
+            this.ZPosButton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ZPosButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.ZPosButton.Location = new System.Drawing.Point(215, 3);
+            this.ZPosButton.Name = "ZPosButton";
+            this.ZPosButton.Size = new System.Drawing.Size(48, 23);
+            this.ZPosButton.TabIndex = 4;
+            this.ZPosButton.Text = "Z+";
+            this.ZPosButton.UseVisualStyleBackColor = true;
+            // 
+            // ZNegButton
+            // 
+            this.ZNegButton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ZNegButton.Location = new System.Drawing.Point(215, 61);
+            this.ZNegButton.Name = "ZNegButton";
+            this.ZNegButton.Size = new System.Drawing.Size(48, 25);
+            this.ZNegButton.TabIndex = 5;
+            this.ZNegButton.Text = "Z-";
+            this.ZNegButton.UseVisualStyleBackColor = true;
+            // 
+            // label5
+            // 
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(3, 58);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(47, 31);
+            this.label5.TabIndex = 6;
+            this.label5.Text = "Jog Size";
+            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // JogSizetextBox
+            // 
+            this.JogSizetextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.JogSizetextBox.Location = new System.Drawing.Point(56, 61);
+            this.JogSizetextBox.Name = "JogSizetextBox";
+            this.JogSizetextBox.Size = new System.Drawing.Size(47, 20);
+            this.JogSizetextBox.TabIndex = 7;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(944, 466);
+            this.ClientSize = new System.Drawing.Size(1210, 466);
+            this.Controls.Add(this.groupBox5);
+            this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.scrollOutputChkbox);
             this.Controls.Add(this.groupBox2);
@@ -414,6 +645,7 @@
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.WindowsDefaultBounds;
             this.Text = "G-code sender";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing_1);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.groupBox1.ResumeLayout(false);
@@ -423,6 +655,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.speedOverrideNumber)).EndInit();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
+            this.groupBox5.ResumeLayout(false);
+            this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -462,6 +699,24 @@
         private System.Windows.Forms.Button LoadDeviceSettingsButton;
         private System.Windows.Forms.ColumnHeader Setting;
         private System.Windows.Forms.ColumnHeader Description;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.Button ToBinButton;
+        private System.Windows.Forms.TextBox IntegerTextBox;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button ToIntButton;
+        private System.Windows.Forms.TextBox BinaryTextBox;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.Button YPosButton;
+        private System.Windows.Forms.Button XNegbutton;
+        private System.Windows.Forms.Button XPosButton;
+        private System.Windows.Forms.Button YNegButton;
+        private System.Windows.Forms.Button ZPosButton;
+        private System.Windows.Forms.Button ZNegButton;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox JogSizetextBox;
 	}
 }
 

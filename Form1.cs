@@ -303,6 +303,7 @@ namespace GrblOutput {
             foreach (ListViewItem i in settingsBox1.Items)
             {
                 SendString(i.Text);
+                DisplayText("Applied Settings");
             }
             
         }
@@ -333,8 +334,6 @@ namespace GrblOutput {
             settingsload = true;
             SendString("$$");
         }
-
-        
 
         private void SettingsLoad()
         {
@@ -368,7 +367,7 @@ namespace GrblOutput {
             else
             {
                 ListViewItem item = new ListViewItem(s.Split('('));
-                
+                item.SubItems[0].Text = item.SubItems[0].Text.TrimEnd(' ');
                 settingsBox1.Items.Add(item);
             }
         }
@@ -387,6 +386,54 @@ namespace GrblOutput {
             serialResponseList.Items.Add(s);
             serialResponseList.TopIndex = serialResponseList.Items.Count - 1;
         }
+
+        private void BinaryTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                if (BinaryTextBox.Text != "")
+                {
+                    IntegerTextBox.Text = Convert.ToString(Convert.ToInt16(BinaryTextBox.Text, 2), 10);
+                    e.Handled = true;
+                }
+                return;
+            }
+            if (!((e.KeyChar == '1') || (e.KeyChar == '0')||(e.KeyChar == (char)Keys.Delete)||(e.KeyChar == (char)Keys.Back)))
+            {
+                System.Media.SystemSounds.Beep.Play();
+                e.Handled = true;
+            }
+        }
+
+        private void ToIntButton_Click(object sender, EventArgs e)
+        {
+            KeyPressEventArgs enter = new KeyPressEventArgs((char)Keys.Enter);
+            BinaryTextBox_KeyPress(this, enter);
+        }
+
+        private void IntegerTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                if (IntegerTextBox.Text != "")
+                {
+                    int value = Convert.ToInt16(IntegerTextBox.Text, 10);
+                    if (value < 256) { BinaryTextBox.Text = Convert.ToString(value, 2); }
+                    else { System.Media.SystemSounds.Beep.Play(); }
+
+                    e.Handled = true;
+                }
+                return;
+            }
+            if (!(((e.KeyChar >=  '0')&&(e.KeyChar <='9')) || (e.KeyChar == (char)Keys.Delete) || (e.KeyChar == (char)Keys.Back)))
+            {
+                System.Media.SystemSounds.Beep.Play();
+                e.Handled = true;
+            }
+            
+        }
+
+
 
 
 
